@@ -27,6 +27,9 @@ jobs:
 
       - name: Compress
         run: tar -czvf upload.tar.gz build/libs/*.jar
-
-      - name: Deploy
-        run: 'curl -X POST -H "Authorization: Bearer ${{ secrets.DEPLOY }}" -F "upload=@upload.tar.gz" https://b.mrmelon54.xyz/u/mc-mod/armored-elytra'
+    
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with: 
+          name: assets
+          path: upload.tar.gz
